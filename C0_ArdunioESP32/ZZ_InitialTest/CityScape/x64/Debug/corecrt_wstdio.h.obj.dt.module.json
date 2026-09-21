@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "CityScape\\x64\\Debug\\corecrt_wstdio.obj",
+            "outputs": [
+                "CityScape\\x64\\Debug\\corecrt_wstdio.h.obj.dt.module.json",
+                "CityScape\\x64\\Debug\\corecrt_wstdio.h.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}

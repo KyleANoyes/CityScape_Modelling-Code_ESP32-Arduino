@@ -1,0 +1,3 @@
+import osmnx as ox
+G = ox.graph.graph_from_place("Salina, Kansas, USA", network_type="drive", simplify=True)
+ox.plot.plot_graph(G)

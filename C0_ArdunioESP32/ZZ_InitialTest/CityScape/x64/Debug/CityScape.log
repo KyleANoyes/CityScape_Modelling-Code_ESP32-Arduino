@@ -1,0 +1,30 @@
+﻿  CityScape.c
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(33,22): warning C4047: 'function': 'char *' differs in levels of indirection from 'char *[4]'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(33,22): warning C4024: 'led_init': different types for formal and actual parameter 2
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(33,33): warning C4047: 'function': 'int *' differs in levels of indirection from 'int *[4][3]'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(33,33): warning C4024: 'led_init': different types for formal and actual parameter 3
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(33,43): warning C4047: 'function': 'int **' differs in levels of indirection from 'int *[4][3]'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(33,43): warning C4024: 'led_init': different types for formal and actual parameter 4
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(47,23): warning C4047: 'function': 'led_panel **' differs in levels of indirection from 'led_panel (*)[4]'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(47,23): warning C4024: 'debug_print_panel': different types for formal and actual parameter 1
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(12,10): warning C4047: 'initializing': 'int *' differs in levels of indirection from 'int'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(18,10): warning C4047: 'initializing': 'int *' differs in levels of indirection from 'int'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(65,19): warning C4013: 'strlen' undefined; assuming extern returning int
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(77,58): warning C4028: formal parameter 3 different from declaration
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(81,24): warning C4047: '=': 'char *' differs in levels of indirection from 'char'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(97,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(97,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(98,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(98,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(99,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(99,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(100,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(100,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(101,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(101,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(102,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(102,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(103,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(103,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int **'
+C:\Dropbox\Programming\Arduino\CityScape\CityScape.c(62,1): warning C4716: 'change_led_power': must return a value
+  CityScape.vcxproj -> C:\Dropbox\Programming\Arduino\CityScape\x64\Debug\CityScape.exe
