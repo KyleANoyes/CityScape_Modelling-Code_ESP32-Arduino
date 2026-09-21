@@ -44,7 +44,8 @@ int main()
     //  The ability to control power dynamically will allow the
     //  desired breathing effect and individual panel assignemnts
 
-    debug_print_panel(&panels);
+
+    debug_print_panel(&panels, numPanels);
 
     int termNum = 0;
     int runState = 1;
@@ -74,11 +75,11 @@ char* add_city(char *newName) {
     return newCity;
 }
 
-void led_init(struct led_panel* panels, char* name, int* gpioPins[3], int* ledColors[3]) {
+void led_init(struct led_panel* panels, char** names[], int* gpioPins[3], int* ledColors[3]) {
     int arrLevel = 0;
     for (int i = 0; i < sizeof(panels); ++i) {
         //  Simple data copy
-        panels[i].name = name[i];
+        panels[i].name = names[i];
         panels[i].power = 0;
 
         arrLevel = i * 3;
@@ -91,16 +92,17 @@ void led_init(struct led_panel* panels, char* name, int* gpioPins[3], int* ledCo
     }
 }
 
-void debug_print_panel(struct led_panel* panel[]) {
-    for (int i = 0; i < sizeof(*panel); ++i) {
-        //printf("%s\n", panel[i]->name);
-        printf("%d\n", panel[i]->power);
-        printf("%d\n", &panel[i]->redValue);
-        printf("%d\n", &panel[i]->redPin);
-        printf("%d\n", &panel[i]->greenValue);
-        printf("%d\n", &panel[i]->greenPin);
-        printf("%d\n", &panel[i]->blueValue);
-        printf("%d\n", &panel[i]->bluePin);
-        printf("- - - - - - - - - - - - - - - -\n");
+void debug_print_panel(struct led_panel panel[], int* arrSize) {
+    for (int i = 0; i < arrSize; ++i) {
+        printf("Panel name: %s\n", panel[i].name);
+        printf("Power lvl:  %d\n", panel[i].power);
+        printf("GPIO Red:   %d\n", panel[i].redPin);
+        printf("GPIO Pwr:   %d\n", panel[i].redValue);
+        printf("GPIO Grn:   %d\n", panel[i].greenPin);
+        printf("GPIO Pwr:   %d\n", panel[i].greenValue);
+        printf("GPIO Blu:   %d\n", panel[i].bluePin);
+        printf("GPIO Pwr:   %d\n", panel[i].blueValue);
+        printf("- - - - - - - - - - -\n");
+
     }
 }
