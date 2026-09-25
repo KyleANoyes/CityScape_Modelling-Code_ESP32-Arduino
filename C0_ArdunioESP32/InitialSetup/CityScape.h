@@ -9,7 +9,7 @@ struct led_panel {
     int* greenValue;
 };
 
-int change_led_power(struct led_panel* panel, int newPower);
+void change_led_power(struct led_panel* panel, char color, int newPower);
 char* add_city(char* newName);
 void led_init(struct led_panel* panels, char** names[], int* gpioPins, int* ledColors[3]);
 void debug_print_panel(struct led_panel panel[], int* arrSize);

@@ -15,6 +15,7 @@ int main()
         {14, 15, 16},
         {17, 18, 19}
     };
+    //  Arbitruary color values. Will change later
     int* ledColors[4][3] = {
         {124, 4, 6},
         {55, 94, 177},
@@ -49,6 +50,13 @@ int main()
 
     int termNum = 0;
     int runState = 1;
+
+    change_led_power(&panels[0], 'R', 255);
+    change_led_power(&panels[1], 'G', 255);
+    change_led_power(&panels[2], 'B', 255);
+
+    debug_print_panel(&panels, numPanels);
+
     while (runState != termNum) {
 
     }
@@ -58,8 +66,20 @@ int main()
     return 0;
 }
 
-int change_led_power(struct led_panel* panel, int newPower) {
-
+void change_led_power(struct led_panel* panel, char color, int newPower) {
+    switch (tolower(color)) {
+    case 'r':
+        panel->redValue = newPower;
+        return;
+    case 'g':
+        panel->greenValue = newPower;
+        return;
+    case 'b':
+        panel->blueValue = newPower;
+        return;
+    }
+    printf("ERROR: Unexpected character provided. Char: %d", color);
+    return;
 }
 
 char* add_city(char *newName) {
