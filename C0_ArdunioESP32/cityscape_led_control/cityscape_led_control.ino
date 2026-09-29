@@ -17,13 +17,15 @@ int main()
     //  https://docs.espressif.com/projects/esp-idf/en/v5.1/esp32/_images/esp32-devkitC-v4-pinout.png
     //  All pins run NE to NW on board orientation
     char* cityNames[4];
-    int* ledGpioPins[4][3] = {
+    int ledGpioPins[4][3] = 
+    {
         {15, 2, 0},
         {4, 16, 17},
         {5, 18, 19},
         {21, 3, 1}
     };
-    int* ledColors[4][3] = {
+    int ledColors[4][3] = 
+    {
         {124, 4, 6},
         {55, 94, 177},
         {84, 4, 212},
@@ -96,25 +98,44 @@ void change_led_power(struct led_panel* panel, int power) {
 }
 
 
-void led_init(struct led_panel* panels, char** names[], int* ledGpioPins[3], int* ledColors[3]) {
-    int arrLevel = 0;
+void led_init(struct led_panel* panels, char** names[], int (*ledGpioPins)[3], int(*ledColors)[3]) {
     for (int i = 0; i < sizeof(panels); ++i) {
+        //  Debug print point - need to delete later
+        // 
+        //  GPIO assignment
+        //  {15, 2, 0},
+        //  { 4, 16, 17 },
+        //  { 5, 18, 19 },
+        //  { 21, 3, 1 }
+        printf("%d\n", ledGpioPins[i][0]);
+        printf("%d\n", ledGpioPins[i][1]);
+        printf("%d\n", ledGpioPins[i][2]);
+        //  
+        //  LED RGB value assignment
+        //  { 124, 4, 6 },
+        //  { 55, 94, 177 },
+        //  { 84, 4, 212 },
+        //  { 20, 244, 10 }
+        printf("%d\n", ledColors[i][0]);
+        printf("%d\n", ledColors[i][1]);
+        printf("%d\n", ledColors[i][2]);
+        printf("- - - - - - - - - - - -\n");
+
         //  Simple data copy
         panels[i].name = names[i];
         panels[i].power = 0;
 
         //  Pass in the assigned GPIO pins
-        arrLevel = i * 3;
-        panels[i].redPin = *&ledGpioPins[arrLevel + 0];
-        panels[i].greenPin = *&ledGpioPins[arrLevel + 1];
-        panels[i].bluePin = *&ledGpioPins[arrLevel + 2];
+        panels[i].redPin = ledGpioPins[i][0];
+        panels[i].greenPin = ledGpioPins[i][1];
+        panels[i].bluePin = ledGpioPins[i][2];
 
         //  Assign colors by group
         change_led_color_group(
             &panels[i], 
-            *&ledColors[arrLevel + 0],
-            *&ledColors[arrLevel + 1],
-            *&ledColors[arrLevel + 2]
+            ledColors[i][0],
+            ledColors[i][1],
+            ledColors[i][2]
         );
     }
 }
