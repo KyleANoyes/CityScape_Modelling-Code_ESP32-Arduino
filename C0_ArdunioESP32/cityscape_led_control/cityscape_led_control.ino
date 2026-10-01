@@ -39,7 +39,7 @@ int main()
     cityNames[2] = add_city("dundee");
     cityNames[3] = add_city("vancouver");
     led_init(panels, cityNames, ledGpioPins, ledColors);
-    debug_print_panel(&panels, numPanels);
+    debug_print_panel(panels, numPanels);
 
     //  Main loop
     while (runState != termNum) {
@@ -79,7 +79,7 @@ void change_led_color_group(struct led_panel* panel, int* r, int* g, int* b) {
     return;
 }
 
-char* add_city(char *newName) {
+char* add_city(char* newName) {
     int nameLen = strlen(*&newName);
     char* newCity;
 
@@ -98,29 +98,8 @@ void change_led_power(struct led_panel* panel, int power) {
 }
 
 
-void led_init(struct led_panel* panels, char** names[], int (*ledGpioPins)[3], int(*ledColors)[3]) {
+void led_init(struct led_panel* panels, char* names[], int (*ledGpioPins)[3], int(*ledColors)[3]) {
     for (int i = 0; i < sizeof(panels); ++i) {
-        //  Debug print point - need to delete later
-        // 
-        //  GPIO assignment
-        //  {15, 2, 0},
-        //  { 4, 16, 17 },
-        //  { 5, 18, 19 },
-        //  { 21, 3, 1 }
-        printf("%d\n", ledGpioPins[i][0]);
-        printf("%d\n", ledGpioPins[i][1]);
-        printf("%d\n", ledGpioPins[i][2]);
-        //  
-        //  LED RGB value assignment
-        //  { 124, 4, 6 },
-        //  { 55, 94, 177 },
-        //  { 84, 4, 212 },
-        //  { 20, 244, 10 }
-        printf("%d\n", ledColors[i][0]);
-        printf("%d\n", ledColors[i][1]);
-        printf("%d\n", ledColors[i][2]);
-        printf("- - - - - - - - - - - -\n");
-
         //  Simple data copy
         panels[i].name = names[i];
         panels[i].power = 0;
@@ -140,7 +119,7 @@ void led_init(struct led_panel* panels, char** names[], int (*ledGpioPins)[3], i
     }
 }
 
-void debug_print_panel(struct led_panel panel[], int* arrSize) {
+void debug_print_panel(struct led_panel panel[], int arrSize) {
     for (int i = 0; i < arrSize; ++i) {
         printf("Panel name: %s\n", panel[i].name);
         printf("Power lvl:  %d\n", panel[i].power);
