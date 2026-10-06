@@ -1,9 +1,10 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\dropbox\\programming\\arduino\\cityscape\\cityscape.cpp",
+        "Source": "c:\\github\\cityscape_modelling-code_esp32-arduino\\c0_ardunioesp32\\initialsetup\\cityscape.cpp",
         "ProvidedModule": "",
         "Includes": [
+            "c:\\github\\cityscape_modelling-code_esp32-arduino\\c0_ardunioesp32\\initialsetup\\cityscape.h",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\iostream",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\yvals_core.h",
             "c:\\program files\\microsoft visual studio\\18\\community\\vc\\tools\\msvc\\14.51.36231\\include\\vcruntime.h",

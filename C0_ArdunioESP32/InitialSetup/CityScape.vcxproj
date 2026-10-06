@@ -139,7 +139,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CityScape.c" />
+    <ClCompile Include="CityScape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CityScape.h" />

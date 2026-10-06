@@ -1,39 +1,8 @@
-﻿  CityScape.c
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(41,33): warning C4048: different array subscripts: 'int *(*)[4]' and 'int [4][3]'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(41,46): warning C4048: different array subscripts: 'int *(*)[4]' and 'int [4][3]'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(41,57): warning C4047: 'function': 'int *' differs in levels of indirection from 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(41,57): warning C4024: 'led_init': different types for formal and actual parameter 5
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(57,13): warning C4013: 'tolower' undefined; assuming extern returning int
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(59,25): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(62,27): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(65,26): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(77,33): warning C4047: 'function': 'led_panel *' differs in levels of indirection from 'led_panel **'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(77,33): warning C4024: 'change_led_color_single': different types for formal and actual parameter 1
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(77,43): warning C4047: 'function': 'char' differs in levels of indirection from 'char *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(77,43): warning C4024: 'change_led_color_single': different types for formal and actual parameter 2
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(74,11): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(83,19): warning C4013: 'strlen' undefined; assuming extern returning int
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(97,41): warning C4028: formal parameter 1 different from declaration
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(103,60): warning C4028: formal parameter 3 different from declaration
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(103,78): warning C4028: formal parameter 4 different from declaration
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(105,23): warning C4047: '<': 'int' differs in levels of indirection from 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(112,26): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(113,28): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(114,27): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(117,32): warning C4047: 'function': 'led_panel **' differs in levels of indirection from 'led_panel *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(117,32): warning C4024: 'change_led_color_group': different types for formal and actual parameter 1
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(125,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(125,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(126,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(126,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(127,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(127,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(128,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(128,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(129,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(129,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(130,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(130,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(131,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'int *'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.c(131,16): warning C4313: 'printf': '%d' in format string conflicts with argument 1 of type 'int *'
+﻿  CityScape.cpp
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(59,26): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(62,28): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(65,27): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(111,28): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(112,30): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(113,29): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
   CityScape.vcxproj -> C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\x64\Debug\CityScape.exe
