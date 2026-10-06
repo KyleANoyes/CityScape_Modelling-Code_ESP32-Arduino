@@ -40,7 +40,7 @@ int main()
     cityNames[1] = add_city("salina");
     cityNames[2] = add_city("dundee");
     cityNames[3] = add_city("vancouver");
-    led_init(panels, *cityNames, ledGpioPins, ledColors);
+    led_init(panels, cityNames, ledGpioPins, ledColors);
     debug_print_panel(panels);
 
     //  Main loop
@@ -100,12 +100,12 @@ void change_led_power(struct led_panel *panel, int power) {
 
 
 //  Initialize LED values
-void led_init(struct led_panel panels[], char names[], int ledGpioPins[][3], int ledColors[][3]) {
+void led_init(struct led_panel panels[], char *names[], int ledGpioPins[][3], int ledColors[][3]) {
     int arrLevel = 0;
     for (int i = 0; i < NUM_PANELS; ++i) {
         //  Simple data copy
-        panels[i].name = &names[i];
-        panels[i].power = (int *)255;
+        panels[i].name = names[i];
+        panels[i].power = (int *)100;
 
         //  Pass in the assigned GPIO pins
         panels[i].redPin = (int *)ledGpioPins[i][0];
@@ -120,14 +120,14 @@ void led_init(struct led_panel panels[], char names[], int ledGpioPins[][3], int
 
 void debug_print_panel(struct led_panel panels[]) {
     for (int i = 0; i < NUM_PANELS; ++i) {
-        cout << "Panel name: " << panels[i].name << endl;
-        cout << "Power lvl: " << panels[i].power << endl;
-        cout << "GPIO Red: " << panels[i].redPin << endl;
-        cout << "GPIO Pwr: " << panels[i].redValue << endl;
-        cout << "GPIO Grn: " << panels[i].greenPin << endl;
-        cout << "GPIO Pwr: " << panels[i].greenValue << endl;
-        cout << "GPIO Blu: " << panels[i].bluePin << endl;
-        cout << "GPIO Pwr: " << panels[i].blueValue << endl;
+        cout << "Panel name:    " << panels[i].name << endl;
+        cout << "Power Level:   " << (int)panels[i].power << endl;
+        cout << "GPIO Red:      " << (int)panels[i].redPin << endl;
+        cout << "GPIO Red Val:  " << (int)panels[i].redValue << endl;
+        cout << "GPIO Grn:      " << (int)panels[i].greenPin << endl;
+        cout << "GPIO Grn Val:  " << (int)panels[i].greenValue << endl;
+        cout << "GPIO Blu:      " << (int)panels[i].bluePin << endl;
+        cout << "GPIO Blu Val:  " << (int)panels[i].blueValue << endl;
         cout << "- - - - - - - - - - - - -" << endl;
     }
 }

@@ -53,13 +53,13 @@ void loop()
 void change_led_color_single(struct led_panel &panel, char color, int colorValue) {
     switch (tolower(color)) {
     case 'r':
-        *panel.redValue = colorValue;
+        panel.redValue = (int*)colorValue;
         return;
     case 'g':
-        *panel.greenValue = colorValue;
+        panel.greenValue = (int*)colorValue;
         return;
     case 'b':
-        *panel.blueValue = colorValue;
+        panel.blueValue = (int*)colorValue;
         return;
     }
     printf("ERROR: Unexpected character provided. Char: %d", color);
@@ -97,17 +97,17 @@ void change_led_power(struct led_panel *panel, int power) {
 
 
 //  Initialize LED values
-void led_init(struct led_panel panels[], char *names[], int ledGpioPins[][3], int ledColors[][3], int& numPanels) {
+void led_init(struct led_panel panels[], char names[], int ledGpioPins[][3], int ledColors[][3]) {
     int arrLevel = 0;
-    for (int i = 0; i < numPanels; ++i) {
+    for (int i = 0; i < NUM_PANELS; ++i) {
         //  Simple data copy
-        panels[i].name = names[i];
-        panels[i].power = 0;
+        panels[i].name = &names[i];
+        panels[i].power = (int *)100;
 
         //  Pass in the assigned GPIO pins
-        panels[i].redPin = &ledGpioPins[i][0];
-        panels[i].greenPin = &ledGpioPins[i][1];
-        panels[i].bluePin = &ledGpioPins[i][2];
+        panels[i].redPin = (int *)ledGpioPins[i][0];
+        panels[i].greenPin = (int *)ledGpioPins[i][1];
+        panels[i].bluePin = (int *)ledGpioPins[i][2];
 
         //  Assign colors by group
         change_led_color_group(panels[i], ledColors[i][0], ledColors[i][1], ledColors[i][2]);
@@ -115,17 +115,16 @@ void led_init(struct led_panel panels[], char *names[], int ledGpioPins[][3], in
 }
 
 
-void debug_print_panel(struct led_panel *panel, int arrSize) {
-    for (int i = 0; i < arrSize; ++i) {
-        printf("Panel name: %s\n", panel[i].name);
-        printf("Power lvl:  %d\n", panel[i].power);
-        printf("GPIO Red:   %d\n", panel[i].redPin);
-        printf("GPIO Pwr:   %d\n", panel[i].redValue);
-        printf("GPIO Grn:   %d\n", panel[i].greenPin);
-        printf("GPIO Pwr:   %d\n", panel[i].greenValue);
-        printf("GPIO Blu:   %d\n", panel[i].bluePin);
-        printf("GPIO Pwr:   %d\n", panel[i].blueValue);
-        printf("- - - - - - - - - - -\n");
-
+void debug_print_panel(struct led_panel panels[]) {
+    for (int i = 0; i < NUM_PANELS; ++i) {
+        cout << "Panel name:    " << panels[i].name << endl;
+        cout << "Power Level:   " << (int)panels[i].power << endl;
+        cout << "GPIO Red:      " << (int)panels[i].redPin << endl;
+        cout << "GPIO Red Val:  " << (int)panels[i].redValue << endl;
+        cout << "GPIO Grn:      " << (int)panels[i].greenPin << endl;
+        cout << "GPIO Grn Val:      " << (int)panels[i].greenValue << endl;
+        cout << "GPIO Blu:      " << (int)panels[i].bluePin << endl;
+        cout << "GPIO Blu Val:  " << (int)panels[i].blueValue << endl;
+        cout << "- - - - - - - - - - - - -" << endl;
     }
 }
