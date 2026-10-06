@@ -33,12 +33,12 @@ int main()
     };
 
     //  Program Initialization
-    struct led_panel *panels[4];
+    struct led_panel panels[4];
     cityNames[0] = add_city("auerbach");
     cityNames[1] = add_city("salina");
     cityNames[2] = add_city("dundee");
     cityNames[3] = add_city("vancouver");
-    led_init(panels, cityNames, ledGpioPins, ledColors);
+    led_init(panels, cityNames, ledGpioPins, ledColors, numPanels);
     debug_print_panel(panels, numPanels);
 
     //  Main loop
@@ -70,11 +70,11 @@ void change_led_color_single(struct led_panel *panel, char color, int colorValue
 }
 
 //  Address the LED Reg, Green, and Blue color values all at once
-void change_led_color_group(struct led_panel *panel, int *r, int *g, int *b) {
+void change_led_color_group(struct led_panel **panel, int r, int g, int b) {
     char* rgb[] = { 'r', 'g', 'b' };
-    int* ledColors[] = { r, g, b };
+    int ledColors[] = { r, g, b };
     for (int i = 0; i < 3; ++i) {
-        change_led_color_single(&panel, rgb[i], ledColors[i]);
+        change_led_color_single(panel, rgb[i], ledColors[i]);
     }
     return;
 }
@@ -93,42 +93,42 @@ char* add_city(char *newName) {
 }
 
 
+//  Change a panels LED power output
 void change_led_power(struct led_panel *panel, int power) {
 
 }
 
 
-void led_init(struct led_panel *panels, char *names, int (*ledGpioPins)[3], int(*ledColors)[3]) {
-    for (int i = 0; i < sizeof(panels); ++i) {
+//  Initialize LED values
+void led_init(struct led_panel *panels, char **names, int *ledGpioPins, int *ledColors, int *numPanels) {
+    int arrLevel = 0;
+    for (int i = 0; i < numPanels; ++i) {
         //  Simple data copy
         panels[i].name = names[i];
         panels[i].power = 0;
 
         //  Pass in the assigned GPIO pins
-        panels[i].redPin = ledGpioPins[i][0];
-        panels[i].greenPin = ledGpioPins[i][1];
-        panels[i].bluePin = ledGpioPins[i][2];
+        arrLevel = i * 3;
+        panels[i].redPin = *&ledGpioPins[arrLevel + 0];
+        panels[i].greenPin = *&ledGpioPins[arrLevel + 1];
+        panels[i].bluePin = *&ledGpioPins[arrLevel + 2];
 
         //  Assign colors by group
-        /*change_led_color_group(
-            panels[i],
-            ledColors[i][0],
-            ledColors[i][1],
-            ledColors[i][2]
-        );*/
+        change_led_color_group(&panels[i], *&ledColors[arrLevel + 0], *&ledColors[arrLevel + 1], *&ledColors[arrLevel + 2]);
     }
 }
 
-void debug_print_panel(struct led_panel *panel[], int arrSize) {
+
+void debug_print_panel(struct led_panel *panel, int arrSize) {
     for (int i = 0; i < arrSize; ++i) {
-        printf("Panel name: %s\n", panel[i]->name);
-        printf("Power lvl:  %d\n", panel[i]->power);
-        printf("GPIO Red:   %d\n", panel[i]->redPin);
-        printf("GPIO Pwr:   %d\n", panel[i]->redValue);
-        printf("GPIO Grn:   %d\n", panel[i]->greenPin);
-        printf("GPIO Pwr:   %d\n", panel[i]->greenValue);
-        printf("GPIO Blu:   %d\n", panel[i]->bluePin);
-        printf("GPIO Pwr:   %d\n", panel[i]->blueValue);
+        printf("Panel name: %s\n", panel[i].name);
+        printf("Power lvl:  %d\n", panel[i].power);
+        printf("GPIO Red:   %d\n", panel[i].redPin);
+        printf("GPIO Pwr:   %d\n", panel[i].redValue);
+        printf("GPIO Grn:   %d\n", panel[i].greenPin);
+        printf("GPIO Pwr:   %d\n", panel[i].greenValue);
+        printf("GPIO Blu:   %d\n", panel[i].bluePin);
+        printf("GPIO Pwr:   %d\n", panel[i].blueValue);
         printf("- - - - - - - - - - -\n");
 
     }

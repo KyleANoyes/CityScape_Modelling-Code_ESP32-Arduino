@@ -37,7 +37,8 @@
               "RelativeToolTip": "..\\..\\..\\..\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt\\stdio.h",
               "ViewState": "AgIAAGoCAAAAAAAAAAAvwIUCAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-09-29T22:59:30.822Z"
+              "WhenOpened": "2026-10-05T22:54:08.15Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -47,7 +48,7 @@
               "RelativeDocumentMoniker": "CityScape.c",
               "ToolTip": "C:\\GitHub\\CityScape_Modelling-Code_ESP32-Arduino\\C0_ArdunioESP32\\InitialSetup\\CityScape.c",
               "RelativeToolTip": "CityScape.c",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAlwHQAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFYAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-09-25T16:22:57.636Z",
               "EditorCaption": ""
@@ -66,7 +67,7 @@
               "RelativeDocumentMoniker": "CityScape.h",
               "ToolTip": "C:\\GitHub\\CityScape_Modelling-Code_ESP32-Arduino\\C0_ArdunioESP32\\InitialSetup\\CityScape.h",
               "RelativeToolTip": "CityScape.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-09-25T16:23:01.856Z",
               "EditorCaption": ""
