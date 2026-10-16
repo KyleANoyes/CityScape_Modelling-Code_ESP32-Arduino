@@ -89,7 +89,6 @@ void write_led_rgb(struct led_panel panels[]) {
         analogWrite((int)panels[i].redPin, (int)panels[i].redValue);
         analogWrite((int)panels[i].greenPin, (int)panels[i].greenValue);
         analogWrite((int)panels[i].bluePin, (int)panels[i].blueValue);
-        delay(500);
     }
 }
 

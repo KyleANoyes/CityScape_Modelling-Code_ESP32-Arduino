@@ -68,17 +68,13 @@ int main()
 
     //  Main loop
     while (runState != termNum) {
-        for (int i = 0; i < 255; ++i) {
-            set_led_power(panels[0], (int*)i);
-        }
 
-
-        write_led_rgb(panels);
         
     }
 
     return 0;
 }
+
 
 //  Assign gpio pins to output of LED
 void write_led_rgb(struct led_panel panels[]) {
@@ -118,8 +114,28 @@ void set_led_color_group(struct led_panel &panel, int &r, int &g, int &b) {
     return;
 }
 
+
+//  Adjust all panels LED's to brightness level based on signwave
+void set_led_power_sinwave(struct led_panel& panel) {
+
+}
+
+
+//  Incrament the sinwave radial value and loop if we exceed 360 degrees
+void incrament_sinwave(struct led_panel &panel) {
+    //  Check if we reached the end of the circle. If so, revert to 0,
+    //      otherwise incramnet by one
+    if (*panel.sinewaveRadial >= 359.0) {
+        *panel.sinewaveRadial = 0.0;
+        return;
+    }
+    *panel.sinewaveRadial += 1;
+}
+
+
 //  Allocate city name into memory
 char* add_city(const char *newName) {
+    //  TODO: Resolve overrun to allow greater than 8-byte char array
     int nameLen = sizeof(newName) / sizeof(newName[0]);
     char* newCity;
 
@@ -146,6 +162,7 @@ void led_init(struct led_panel panels[], char *names[], int gpioLedPins[][3], in
         //  Simple data copy
         panels[i].name = names[i];
         panels[i].power = (int *)100;
+        panels[i].sinewaveRadial = (double *)0;
 
         //  Pass in the assigned GPIO pins
         panels[i].redPin = (int*)gpioLedPins[i][0];
@@ -174,5 +191,8 @@ void debug_print_panel(struct led_panel panels[]) {
 
 
 void debug_analogWrite(int pin, int value) {
+    cout << "Pin: " << pin << endl;
+    cout << "Value: " << pin << endl;
+    cout << "- - - - - - - - -" << endl;
     return;
 }
