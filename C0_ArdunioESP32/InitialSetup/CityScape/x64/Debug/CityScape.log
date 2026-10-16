@@ -1,22 +1,23 @@
 ﻿  CityScape.cpp
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(59,26): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(62,28): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(65,27): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(111,28): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(112,30): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(113,29): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(124,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(124,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(125,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(125,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(126,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(126,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(127,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(127,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(128,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
-C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(128,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(60,26): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(63,28): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(66,27): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(103,19): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(116,28): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(117,30): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(118,29): warning C4312: 'type cast': conversion from 'int' to 'int *' of greater size
 C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(129,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
 C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(129,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
 C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(130,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
 C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(130,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(131,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(131,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(132,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(132,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(133,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(133,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(134,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(134,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(135,38): warning C4311: 'type cast': pointer truncation from 'int *' to 'int'
+C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\CityScape.cpp(135,38): warning C4302: 'type cast': truncation from 'int *' to 'int'
   CityScape.vcxproj -> C:\GitHub\CityScape_Modelling-Code_ESP32-Arduino\C0_ArdunioESP32\InitialSetup\x64\Debug\CityScape.exe

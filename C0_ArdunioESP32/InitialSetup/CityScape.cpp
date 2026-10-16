@@ -12,14 +12,15 @@ int main()
     //  Variable (single) declaration
     int termNum = 0;
     int runState = 1;
-    int styleGpioPin = 36;
+    int gpioStylePin = 36;
+    int gpioLedPowerScale = 39;
     int styleProfile = 0;
 
     //  Variable (array) declaration
     //  https://docs.espressif.com/projects/esp-idf/en/v5.1/esp32/_images/esp32-devkitC-v4-pinout.png
     //  All pins run NE to NW on board orientation
     char* cityNames[NUM_PANELS];
-    int ledGpioPins[NUM_PANELS][3] =
+    int gpioLedPins[NUM_PANELS][3] =
     {
         {15, 2, 0},
         {4, 16, 17},
@@ -40,7 +41,7 @@ int main()
     cityNames[1] = add_city("salina");
     cityNames[2] = add_city("dundee");
     cityNames[3] = add_city("vancouver");
-    led_init(panels, cityNames, ledGpioPins, ledColors);
+    led_init(panels, cityNames, gpioLedPins, ledColors);
     debug_print_panel(panels);
 
     //  Main loop
@@ -53,7 +54,7 @@ int main()
 
 
 //  Address the LED Red, Green, and Blue color values individually
-void change_led_color_single(struct led_panel &panel, char color, int colorValue) {
+void set_led_color_single(struct led_panel &panel, char color, int colorValue) {
     switch (tolower(color)) {
     case 'r':
         panel.redValue = (int*)colorValue;
@@ -70,15 +71,16 @@ void change_led_color_single(struct led_panel &panel, char color, int colorValue
 }
 
 //  Address the LED Reg, Green, and Blue color values all at once
-void change_led_color_group(struct led_panel &panel, int &r, int &g, int &b) {
+void set_led_color_group(struct led_panel &panel, int &r, int &g, int &b) {
     char rgb[3] = {'r', 'g', 'b'};
     int ledColors[] = { r, g, b };
     for (int i = 0; i < 3; ++i) {
-        change_led_color_single(panel, rgb[i], ledColors[i]);
+        set_led_color_single(panel, rgb[i], ledColors[i]);
     }
     return;
 }
 
+//  Allocate city name into memory
 char* add_city(const char *newName) {
     int nameLen = sizeof(newName) / sizeof(newName[0]);
     char* newCity;
@@ -94,13 +96,16 @@ char* add_city(const char *newName) {
 
 
 //  Change a panels LED power output
-void change_led_power(struct led_panel *panel, int power) {
 
+void set_led_power(struct led_panel &panel, int *newPower, int *ledPowerScale) {
+    //  Scale power into double then pass into panel
+    double scaledPower = *newPower * *ledPowerScale;
+    panel.power = (int*)(int)round(scaledPower);
 }
 
 
 //  Initialize LED values
-void led_init(struct led_panel panels[], char *names[], int ledGpioPins[][3], int ledColors[][3]) {
+void led_init(struct led_panel panels[], char *names[], int gpioLedPins[][3], int ledColors[][3]) {
     int arrLevel = 0;
     for (int i = 0; i < NUM_PANELS; ++i) {
         //  Simple data copy
@@ -108,12 +113,12 @@ void led_init(struct led_panel panels[], char *names[], int ledGpioPins[][3], in
         panels[i].power = (int *)100;
 
         //  Pass in the assigned GPIO pins
-        panels[i].redPin = (int *)ledGpioPins[i][0];
-        panels[i].greenPin = (int *)ledGpioPins[i][1];
-        panels[i].bluePin = (int *)ledGpioPins[i][2];
+        panels[i].redPin = (int*)gpioLedPins[i][0];
+        panels[i].greenPin = (int*)gpioLedPins[i][1];
+        panels[i].bluePin = (int*)gpioLedPins[i][2];
 
         //  Assign colors by group
-        change_led_color_group(panels[i], ledColors[i][0], ledColors[i][1], ledColors[i][2]);
+        set_led_color_group(panels[i], ledColors[i][0], ledColors[i][1], ledColors[i][2]);
     }
 }
 
