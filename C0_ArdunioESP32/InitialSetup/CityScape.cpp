@@ -6,6 +6,25 @@ using namespace std;
 
 //  Global variables
 const int NUM_PANELS = 4;
+const int LED_POWER_SCALE = 255;
+
+//  GPIO Panel LED Declarations
+#define P0_PIN_R 15
+#define P0_PIN_G 2
+#define P0_PIN_B 0
+#define P1_PIN_R 4
+#define P1_PIN_G 16
+#define P1_PIN_B 17
+#define P2_PIN_R 5;
+#define P2_PIN_G 18;
+#define P2_PIN_B 19;
+#define P3_PIN_R 21;
+#define P3_PIN_G 3;
+#define P3_PIN_B 1;
+
+//  GPIO Button Declarations
+#define STYLE_PIN = 39;
+#define POWER_SCALE_PIN = 36;
 
 int main()
 {
@@ -22,10 +41,11 @@ int main()
     char* cityNames[NUM_PANELS];
     int gpioLedPins[NUM_PANELS][3] =
     {
+        //  TODO: Utilize the int definitions from above
         {15, 2, 0},
         {4, 16, 17},
         {5, 18, 19},
-        {21, 3, 1}
+        {21, 3, 1},
     };
     int ledColors[NUM_PANELS][3] =
     {
@@ -42,14 +62,32 @@ int main()
     cityNames[2] = add_city("dundee");
     cityNames[3] = add_city("vancouver");
     led_init(panels, cityNames, gpioLedPins, ledColors);
+    
     debug_print_panel(panels);
+    
 
     //  Main loop
     while (runState != termNum) {
+        for (int i = 0; i < 255; ++i) {
+            set_led_power(panels[0], (int*)i);
+        }
 
+
+        write_led_rgb(panels);
+        
     }
 
     return 0;
+}
+
+//  Assign gpio pins to output of LED
+void write_led_rgb(struct led_panel panels[]) {
+    for (int i = 0; i < NUM_PANELS; ++i) {
+        //  Remove debug when copying into Arduino's IDE
+        debug_analogWrite((int)panels[i].redPin, (int)panels[i].redValue);
+        debug_analogWrite((int)panels[i].greenPin, (int)panels[i].greenValue);
+        debug_analogWrite((int)panels[i].bluePin, (int)panels[i].blueValue);
+    }
 }
 
 
@@ -96,11 +134,8 @@ char* add_city(const char *newName) {
 
 
 //  Change a panels LED power output
-
-void set_led_power(struct led_panel &panel, int *newPower, int *ledPowerScale) {
-    //  Scale power into double then pass into panel
-    double scaledPower = *newPower * *ledPowerScale;
-    panel.power = (int*)(int)round(scaledPower);
+void set_led_power(struct led_panel &panel, int *newPower) {
+    panel.power = (int*)(int)newPower;
 }
 
 
@@ -135,4 +170,9 @@ void debug_print_panel(struct led_panel panels[]) {
         cout << "GPIO Blu Val:  " << (int)panels[i].blueValue << endl;
         cout << "- - - - - - - - - - - - -" << endl;
     }
+}
+
+
+void debug_analogWrite(int pin, int value) {
+    return;
 }
