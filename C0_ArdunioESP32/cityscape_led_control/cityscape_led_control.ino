@@ -54,14 +54,14 @@ void loop()
     char* cityNames[NUM_PANELS];
     int gpioLedPins[NUM_PANELS][3] =
     {
-        {15, 2, 0},
+        {89, 122, 49},
         {4, 16, 17},
         {5, 18, 19},
         {21, 3, 1}
     };
     int ledColors[NUM_PANELS][3] =
     {
-        {124, 4, 6},
+        {124, 4, 9},
         {55, 94, 177},
         {84, 4, 212},
         {20, 244, 10}
@@ -77,7 +77,16 @@ void loop()
 
     //  Main loop
     while (runState != termNum) {
-        write_led_rgb(panels);
+        for (int i = 0; i < 255; ++i) {
+            set_led_color_group(panels[0], i, 0, 0);
+            write_led_rgb(panels);
+            delay(3);
+        }
+        for (int i = 255; i > 0; --i) {
+            set_led_color_group(panels[0], i, 0, 0);
+            write_led_rgb(panels);
+            delay(3);
+        }
 
     }
 }
@@ -110,7 +119,7 @@ void set_led_color_single(struct led_panel &panel, char color, int colorValue) {
 }
 
 //  Address the LED Reg, Green, and Blue color values all at once
-void set_led_color_group(struct led_panel &panel, int &r, int &g, int &b) {
+void set_led_color_group(struct led_panel &panel, int r, int g, int b) {
     char rgb[3] = {'r', 'g', 'b'};
     int ledColors[] = { r, g, b };
     for (int i = 0; i < 3; ++i) {
@@ -157,7 +166,7 @@ void led_init(struct led_panel panels[], char *names[], int gpioLedPins[][3], in
         panels[i].bluePin = (int*)gpioLedPins[i][2];
 
         //  Assign colors by group
-        set_led_color_group(panels[i], ledColors[i][0], ledColors[i][1], ledColors[i][2]);
+        set_led_color_group(panels[i], (int)ledColors[i][0], (int)ledColors[i][1], (int)ledColors[i][2]);
     }
 }
 

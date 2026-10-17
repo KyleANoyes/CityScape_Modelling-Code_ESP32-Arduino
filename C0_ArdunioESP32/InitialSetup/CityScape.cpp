@@ -68,8 +68,14 @@ int main()
 
     //  Main loop
     while (runState != termNum) {
-
-        
+        for (int i = 0; i < 255; ++i) {
+            set_led_color_group(panels[0], i, i, i);
+            write_led_rgb(panels);
+        }
+        for (int i = 255; i > 0; --i) {
+            set_led_color_group(panels[0], i, i, i);
+            write_led_rgb(panels);
+        }
     }
 
     return 0;
@@ -105,7 +111,7 @@ void set_led_color_single(struct led_panel &panel, char color, int colorValue) {
 }
 
 //  Address the LED Reg, Green, and Blue color values all at once
-void set_led_color_group(struct led_panel &panel, int &r, int &g, int &b) {
+void set_led_color_group(struct led_panel &panel, int r, int g, int b) {
     char rgb[3] = {'r', 'g', 'b'};
     int ledColors[] = { r, g, b };
     for (int i = 0; i < 3; ++i) {

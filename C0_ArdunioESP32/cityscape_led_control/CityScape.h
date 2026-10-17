@@ -10,7 +10,7 @@ struct led_panel {
 };
 
 void set_led_color_single(struct led_panel *panel, char color, int colorValue);
-void set_led_color_group(struct led_panel& panel, int& r, int& g, int& b);
+void set_led_color_group(struct led_panel& panel, int r, int g, int b);
 void set_led_power(struct led_panel **panel, int newPower);
 void write_led_rgb(struct led_panel panels[]);
 char* add_city(const char* newName);
