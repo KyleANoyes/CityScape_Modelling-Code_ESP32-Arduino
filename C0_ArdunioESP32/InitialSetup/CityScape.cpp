@@ -15,16 +15,16 @@ const int LED_POWER_SCALE = 255;
 #define P1_PIN_R 4
 #define P1_PIN_G 16
 #define P1_PIN_B 17
-#define P2_PIN_R 5;
-#define P2_PIN_G 18;
-#define P2_PIN_B 19;
-#define P3_PIN_R 21;
-#define P3_PIN_G 3;
-#define P3_PIN_B 1;
+#define P2_PIN_R 5
+#define P2_PIN_G 18
+#define P2_PIN_B 19
+#define P3_PIN_R 21
+#define P3_PIN_G 3
+#define P3_PIN_B 1
 
 //  GPIO Button Declarations
-#define STYLE_PIN = 39;
-#define POWER_SCALE_PIN = 36;
+#define STYLE_PIN 32
+#define POTENTIOMETER_PIN 33
 
 int main()
 {
@@ -63,19 +63,10 @@ int main()
     cityNames[3] = add_city("vancouver");
     led_init(panels, cityNames, gpioLedPins, ledColors);
     
-    debug_print_panel(panels);
-    
 
     //  Main loop
     while (runState != termNum) {
-        for (int i = 0; i < 255; ++i) {
-            set_led_color_group(panels[0], i, i, i);
-            write_led_rgb(panels);
-        }
-        for (int i = 255; i > 0; --i) {
-            set_led_color_group(panels[0], i, i, i);
-            write_led_rgb(panels);
-        }
+        
     }
 
     return 0;
@@ -86,9 +77,9 @@ int main()
 void write_led_rgb(struct led_panel panels[]) {
     for (int i = 0; i < NUM_PANELS; ++i) {
         //  Remove debug when copying into Arduino's IDE
-        debug_analogWrite((int)panels[i].redPin, (int)panels[i].redValue);
-        debug_analogWrite((int)panels[i].greenPin, (int)panels[i].greenValue);
-        debug_analogWrite((int)panels[i].bluePin, (int)panels[i].blueValue);
+        debug_analogWrite((int)panels[i].redPin, calc_led_power_scale(panels[i].redValue));
+        debug_analogWrite((int)panels[i].greenPin, calc_led_power_scale(panels[i].greenValue));
+        debug_analogWrite((int)panels[i].bluePin, calc_led_power_scale(panels[i].blueValue);
     }
 }
 
@@ -123,7 +114,26 @@ void set_led_color_group(struct led_panel &panel, int r, int g, int b) {
 
 //  Adjust all panels LED's to brightness level based on signwave
 void set_led_power_sinwave(struct led_panel& panel) {
+    //  LOGIC WORKFLOW 
+    //  1. Call sinwave radial from panel, scale LED based on that
+    //  2. Scale the LED brightness based on radial calcualtion
+    
+}
 
+
+//  Get potentiometer value from analogInput
+int get_potentiometer_normalized() {
+    //  TODO: Read documentation from Arduoino's webiste
+    //      on value reads from a potentiometer
+
+
+    return 100;
+}
+
+
+//  Return LED power based on potentiometer value
+int calc_led_power_scale(int* colorValue) {
+    double newValue = (int)colorValue * get_potentiometer_normalized();
 }
 
 

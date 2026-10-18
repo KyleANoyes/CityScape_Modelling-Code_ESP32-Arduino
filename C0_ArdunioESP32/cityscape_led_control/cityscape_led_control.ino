@@ -21,10 +21,12 @@ const int NUM_PANELS = 4;
 #define P3_PIN_B 1
 
 //  GPIO Button Declarations
-#define STYLE_PIN = 39;
-#define POWER_SCALE_PIN = 36;
+#define STYLE_PIN 32
+#define POWER_SCALE_PIN 33
+#define POTENTIOMETER_PIN 25
 
 void setup() {
+    //  LED Strip pin modes
     pinMode(P0_PIN_R, OUTPUT);
     pinMode(P0_PIN_G, OUTPUT);
     pinMode(P0_PIN_B, OUTPUT);
@@ -37,6 +39,11 @@ void setup() {
     pinMode(P3_PIN_R, OUTPUT);
     pinMode(P3_PIN_G, OUTPUT);
     pinMode(P3_PIN_B, OUTPUT);
+
+    // Auxilary control pins
+    pinMode(STYLE_PIN, INPUT);
+    pinMode(POWER_SCALE_PIN, INPUT);
+    pinMode(POTENTIOMETER_PIN, INPUT);
 }
 
 void loop()
