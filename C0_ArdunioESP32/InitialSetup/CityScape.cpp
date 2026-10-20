@@ -11,16 +11,16 @@ const int NUM_SOLID_COLORS = 5;
 //  GPIO Panel LED Declarations
 #define P0_PIN_R 15
 #define P0_PIN_G 2
-#define P0_PIN_B 0
-#define P1_PIN_R 4
-#define P1_PIN_G 16
-#define P1_PIN_B 17
-#define P2_PIN_R 5
-#define P2_PIN_G 18
-#define P2_PIN_B 19
-#define P3_PIN_R 21
-#define P3_PIN_G 3
-#define P3_PIN_B 1
+#define P0_PIN_B 4
+#define P1_PIN_R 16
+#define P1_PIN_G 17
+#define P1_PIN_B 5
+#define P2_PIN_R 18
+#define P2_PIN_G 19
+#define P2_PIN_B 21
+#define P3_PIN_R 3
+#define P3_PIN_G 1
+#define P3_PIN_B 22
 
 //  GPIO Button Declarations
 #define STYLE_PIN 32
@@ -112,8 +112,8 @@ int main()
                 cout << "ERROR: Switch 'Color Style Selecion' default reached" << endl;
         }
 
-        //write_led_rgb(panels);
         debug_print_panel(panels);
+        write_led_rgb(panels);
         styleProfile = debug_incrament_styleProfile(styleProfile);
     }
 
@@ -175,7 +175,7 @@ void set_led_color_sinwave(struct led_panel& panel) {
 
 //  Get potentiometer value from analogInput
 double get_brightness_normalized() {
-    int inputValue = 874;
+    int inputValue = 250;
     double scaledValue = 0.0;
     //  rawValue = analogRead(BRIGHTNESS_PIN);
 
@@ -188,7 +188,8 @@ double get_brightness_normalized() {
 //  Return LED power based on potentiometer value
 void scale_panels_led_power(struct led_panel panels[]) {
     for (int i = 0; i < NUM_PANELS; ++i) {
-        //panels[i].redValue = panels[i].redValue * get_brightness_normalized();
+        int newValue = (int)panels[i].redValue * get_brightness_normalized();
+        panels[i].redValue = (int*)newValue;
     }
 }
 
@@ -207,11 +208,22 @@ void incrament_sinwave(struct led_panel &panel) {
 
 //  Allocate city name into memory
 char* add_city(const char *newName) {
-    //  TODO: Resolve overrun to allow greater than 8-byte char array
-    int nameLen = sizeof(newName) / sizeof(newName[0]);
     char* newCity;
+    int nameLen = 0;
+    for (int i = 0; i < 256; ++i) {
+        if (newName[i] == '\0') {
+            break;
+        }
+        nameLen += 1;
+    }
+
+    if (nameLen == 256) {
+        nameLen = 8;
+        newName = "unknown";
+    }
 
     newCity = new char[nameLen];
+
     for (int i = 0; i < nameLen; ++i) {
         newCity[i] = newName[i];
     }

@@ -9,17 +9,17 @@ const int NUM_SOLID_COLORS = 5;
 
 //  GPIO Panel LED Declarations
 #define P0_PIN_R 15
-#define P0_PIN_G 13
-#define P0_PIN_B 12
-#define P1_PIN_R 4
-#define P1_PIN_G 16
-#define P1_PIN_B 17
-#define P2_PIN_R 5
-#define P2_PIN_G 18
-#define P2_PIN_B 19
-#define P3_PIN_R 21
-#define P3_PIN_G 3
-#define P3_PIN_B 1
+#define P0_PIN_G 2
+#define P0_PIN_B 4
+#define P1_PIN_R 16
+#define P1_PIN_G 17
+#define P1_PIN_B 5
+#define P2_PIN_R 18
+#define P2_PIN_G 19
+#define P2_PIN_B 21
+#define P3_PIN_R 3
+#define P3_PIN_G 1
+#define P3_PIN_B 22
 
 //  GPIO Button Declarations
 #define STYLE_PIN 32
@@ -61,16 +61,10 @@ void loop()
     char* cityNames[NUM_PANELS];
     int gpioLedPins[NUM_PANELS][3] =
     {
-        //  TODO: Utilize the int definitions from above
-        //{P0_PIN_R, P0_PIN_G, P0_PIN_B},
-        //{P1_PIN_R, P1_PIN_G, P1_PIN_B},
-        //{P2_PIN_R, P2_PIN_G, P2_PIN_B},
-        //{P3_PIN_R, P3_PIN_G, P3_PIN_B}
-
-        {15, 13, 12},
-        {99, 99, 99},
-        {99, 99, 99},
-        {99, 99, 99},
+        {P0_PIN_R, P0_PIN_G, P0_PIN_B},
+        {P1_PIN_R, P1_PIN_G, P1_PIN_B},
+        {P2_PIN_R, P2_PIN_G, P2_PIN_B},
+        {P3_PIN_R, P3_PIN_G, P3_PIN_B}
     };
     int ledDefaultColors[NUM_PANELS][3] =
     {
@@ -94,7 +88,7 @@ void loop()
     cityNames[2] = add_city("dundee");
     cityNames[3] = add_city("vancouver");
     led_init(panels, cityNames, gpioLedPins, ledDefaultColors);
-    
+
 
     //  Main loop
     while (runState != termCase) {
@@ -138,7 +132,7 @@ void loop()
         }
 
         write_led_rgb(panels);
-        delay(50);
+        delay(500);
         styleProfile = debug_incrament_styleProfile(styleProfile);
     }
 }
@@ -198,13 +192,13 @@ void set_led_color_sinwave(struct led_panel& panel) {
 
 //  Get potentiometer value from analogInput
 double get_brightness_normalized() {
-    int inputValue = 874;
+    int inputValue = 10;
     double scaledValue = 0.0;
     //  rawValue = analogRead(BRIGHTNESS_PIN);
 
     scaledValue = inputValue / 1023.0;
 
-    return scaledValue;
+    return 0;
 }
 
 
@@ -295,6 +289,7 @@ void group_sinewave_color(struct led_panel panels[]) {
 
 }
 
+
 //  Debug print all data related to panel struct
 void debug_print_panel(struct led_panel panels[]) {
     for (int i = 0; i < NUM_PANELS; ++i) {
@@ -307,8 +302,10 @@ void debug_print_panel(struct led_panel panels[]) {
         cout << "GPIO Blu:      " << (int)panels[i].bluePin << endl;
         cout << "GPIO Blu Val:  " << (int)panels[i].blueValue << endl;
         cout << "- - - - - - - - - - - - -" << endl;
+        cout << endl;
     }
 }
+
 
 //  Debug print a panels selected color pin value output
 void debug_analogWrite(int pin, int value) {
