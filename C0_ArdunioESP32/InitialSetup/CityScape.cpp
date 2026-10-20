@@ -188,8 +188,15 @@ double get_brightness_normalized() {
 //  Return LED power based on potentiometer value
 void scale_panels_led_power(struct led_panel panels[]) {
     for (int i = 0; i < NUM_PANELS; ++i) {
-        int newValue = (int)panels[i].redValue * get_brightness_normalized();
-        panels[i].redValue = (int*)newValue;
+        int calculatedValue = 0;
+        double scaleMultiple = get_brightness_normalized();
+
+        calculatedValue = (int)panels[i].redValue * scaleMultiple;
+        panels[i].redValue = (int*)calculatedValue;
+        calculatedValue = (int)panels[i].blueValue * scaleMultiple;
+        panels[i].blueValue = (int*)calculatedValue;
+        calculatedValue = (int)panels[i].greenValue * scaleMultiple;
+        panels[i].greenValue = (int*)calculatedValue;
     }
 }
 
