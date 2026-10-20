@@ -210,6 +210,7 @@ void incrament_sinwave(struct led_panel &panel) {
 char* add_city(const char *newName) {
     char* newCity;
     int nameLen = 0;
+    //  Parse length of char array to see if we find a null terminator
     for (int i = 0; i < 256; ++i) {
         if (newName[i] == '\0') {
             break;
@@ -217,13 +218,14 @@ char* add_city(const char *newName) {
         nameLen += 1;
     }
 
+    //  If we blew past 256 loops, assume bad data ingestion and use unknown
     if (nameLen == 256) {
         nameLen = 8;
         newName = "unknown";
     }
 
+    //  Allocate heap memeory for needed size of char array
     newCity = new char[nameLen];
-
     for (int i = 0; i < nameLen; ++i) {
         newCity[i] = newName[i];
     }
