@@ -153,6 +153,7 @@ void set_led_color_single(struct led_panel &panel, char color, int colorValue) {
     return;
 }
 
+
 //  Address the LED Reg, Green, and Blue color values all at once
 void set_led_color_group(struct led_panel &panel, int r, int g, int b) {
     char rgb[3] = {'r', 'g', 'b'};
