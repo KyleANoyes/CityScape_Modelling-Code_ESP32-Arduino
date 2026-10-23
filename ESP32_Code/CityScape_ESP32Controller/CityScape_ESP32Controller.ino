@@ -135,9 +135,10 @@ void loop()
                 cout << "ERROR: Switch 'Color Style Selecion' default reached" << endl;
         }
 
-        debug_print_panel(panels);
         write_led_rgb(panels);
         styleProfile = debug_incrament_styleProfile(styleProfile);
+
+        delay(250);
     };
 }
 
@@ -197,10 +198,12 @@ void set_led_color_sinwave(struct led_panel& panel) {
 
 //  Get potentiometer value from analogInput
 double get_brightness_normalized() {
-    double inputVal = analogRead(BRIGHTNESS_PIN);
+    int inputVal = 0;
     double outputVal = 0.0;
+    
+    inputVal = analogRead(BRIGHTNESS_PIN);
+    outputVal = map(inputVal, 0, 4096, 0, 100) / 100.0;
 
-    outputVal = inputVal / 4096.0;
     return outputVal;
 }
 

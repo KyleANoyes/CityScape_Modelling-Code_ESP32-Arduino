@@ -176,11 +176,14 @@ void set_led_color_sinwave(struct led_panel& panel) {
 
 //  Get potentiometer value from analogInput
 double get_brightness_normalized() {
-    int inputVal = 2751;
+    int inputVal = 0;
     double outputVal = 0.0;
-    //  inputVal = analogRead(BRIGHTNESS_PIN);
 
-    outputVal = inputVal / 4096.0;
+    //  Debugging for VS
+    //outputVal = inputVal / 4096;
+    // Production for Arudino
+    // inputVal = analogRead(BRIGHTNESS_PIN);
+    //outputVal = map(inputVal, 0, 4096, 0, 100) / 100.0;
     return outputVal;
 }
 
