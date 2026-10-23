@@ -26,6 +26,10 @@ const int NUM_SOLID_COLORS = 5;
 #define BRIGHTNESS_PIN 33
 
 void setup() {
+    // Debug print intiate
+    Serial.begin(9600);
+    Serial.print("Serial plotter started\n");
+
     //  LED Strip pin modes
     pinMode(P0_PIN_R, OUTPUT);
     pinMode(P0_PIN_G, OUTPUT);
@@ -53,7 +57,7 @@ void loop()
     int gpioStylePin = 36;
     int gpioLedPowerScale = 39;
     int styleProfile = 0;
-    int caseGroupIndexStart = 0;
+    int caseGroupIndex = 0;
 
     //  Variable (array) declaration
     //  https://docs.espressif.com/projects/esp-idf/en/v5.1/esp32/_images/esp32-devkitC-v4-pinout.png
@@ -88,7 +92,7 @@ void loop()
     cityNames[2] = add_city("dundee");
     cityNames[3] = add_city("vancouver");
     led_init(panels, cityNames, gpioLedPins, ledDefaultColors);
-
+    
 
     //  Main loop
     while (runState != termCase) {
@@ -102,18 +106,18 @@ void loop()
                 break;
             //  Fallthrough case to setting group color
             case (1):   //  Auerbach
-                caseGroupIndexStart = 1;
+                caseGroupIndex = 1;
                 [[fallthrough]];
             case (2):   //  Salina
                 [[fallthrough]];
             case (3):   //  Dundee
                 [[fallthrough]];
             case (4):   //  Vancouver
-                group_landscape_color(panels, ledDefaultColors, (styleProfile - caseGroupIndexStart));
+                group_landscape_color(panels, ledDefaultColors, (styleProfile - caseGroupIndex));
                 break;
             //  Fallthrough case to setting group solid color
             case (5):   //  White
-                caseGroupIndexStart = 5;
+                caseGroupIndex = 5;
                 [[fallthrough]];
             case (6):   //  Yellow - Butter
                 [[fallthrough]];
@@ -122,7 +126,7 @@ void loop()
             case (8):   //  Blue
                 [[fallthrough]];
             case (9):   //  Green
-                group_solid_color(panels, solidColorPresets, (styleProfile - caseGroupIndexStart));
+                group_solid_color(panels, solidColorPresets, (styleProfile - caseGroupIndex));
                 break;
             case (10):
                 group_sinewave_color(panels);
@@ -131,10 +135,10 @@ void loop()
                 cout << "ERROR: Switch 'Color Style Selecion' default reached" << endl;
         }
 
+        debug_print_panel(panels);
         write_led_rgb(panels);
-        delay(500);
         styleProfile = debug_incrament_styleProfile(styleProfile);
-    }
+    };
 }
 
 
@@ -170,6 +174,7 @@ void set_led_color_single(struct led_panel &panel, char color, int colorValue) {
     return;
 }
 
+
 //  Address the LED Reg, Green, and Blue color values all at once
 void set_led_color_group(struct led_panel &panel, int r, int g, int b) {
     char rgb[3] = {'r', 'g', 'b'};
@@ -185,27 +190,33 @@ void set_led_color_group(struct led_panel &panel, int r, int g, int b) {
 void set_led_color_sinwave(struct led_panel& panel) {
     //  LOGIC WORKFLOW 
     //  1. Call sinwave radial from panel, scale LED based on that
-    //  2. Scale the LED brightness based on radial calcualtion
+    //  2. Scale the LED brightness based on radial calcualation
     
 }
 
 
 //  Get potentiometer value from analogInput
 double get_brightness_normalized() {
-    int inputValue = 10;
-    double scaledValue = 0.0;
-    //  rawValue = analogRead(BRIGHTNESS_PIN);
+    double inputVal = analogRead(BRIGHTNESS_PIN);
+    double outputVal = 0.0;
 
-    scaledValue = inputValue / 1023.0;
-
-    return 0;
+    outputVal = inputVal / 4096.0;
+    return outputVal;
 }
 
 
 //  Return LED power based on potentiometer value
 void scale_panels_led_power(struct led_panel panels[]) {
     for (int i = 0; i < NUM_PANELS; ++i) {
-        //panels[i].redValue = panels[i].redValue * get_brightness_normalized();
+        int calculatedValue = 0;
+        double scaleMultiple = get_brightness_normalized();
+
+        calculatedValue = (int)panels[i].redValue * scaleMultiple;
+        panels[i].redValue = (int*)calculatedValue;
+        calculatedValue = (int)panels[i].blueValue * scaleMultiple;
+        panels[i].blueValue = (int*)calculatedValue;
+        calculatedValue = (int)panels[i].greenValue * scaleMultiple;
+        panels[i].greenValue = (int*)calculatedValue;
     }
 }
 
@@ -224,10 +235,23 @@ void incrament_sinwave(struct led_panel &panel) {
 
 //  Allocate city name into memory
 char* add_city(const char *newName) {
-    //  TODO: Resolve overrun to allow greater than 8-byte char array
-    int nameLen = sizeof(newName) / sizeof(newName[0]);
     char* newCity;
+    int nameLen = 0;
+    //  Parse length of char array to see if we find a null terminator
+    for (int i = 0; i < 256; ++i) {
+        if (newName[i] == '\0') {
+            break;
+        }
+        nameLen += 1;
+    }
 
+    //  If we blew past 256 loops, assume bad data ingestion and use unknown
+    if (nameLen == 256) {
+        nameLen = 8;
+        newName = "unknown";
+    }
+
+    //  Allocate heap memeory for needed size of char array
     newCity = new char[nameLen];
     for (int i = 0; i < nameLen; ++i) {
         newCity[i] = newName[i];

@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="CityScape_VisualStudioDevEnv.vcxproj" />
+  <Project Path="CityScape_VisualStudioDevEnv.vcxproj" Id="38bacc21-452a-42a1-b594-9126a8e9e9af" />
 </Solution>

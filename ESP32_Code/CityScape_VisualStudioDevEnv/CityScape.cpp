@@ -34,7 +34,7 @@ int main()
     int gpioStylePin = 36;
     int gpioLedPowerScale = 39;
     int styleProfile = 0;
-    int caseGroupIndexStart = 0;
+    int caseGroupIndex = 0;
 
     //  Variable (array) declaration
     //  https://docs.espressif.com/projects/esp-idf/en/v5.1/esp32/_images/esp32-devkitC-v4-pinout.png
@@ -83,18 +83,18 @@ int main()
                 break;
             //  Fallthrough case to setting group color
             case (1):   //  Auerbach
-                caseGroupIndexStart = 1;
+                caseGroupIndex = 1;
                 [[fallthrough]];
             case (2):   //  Salina
                 [[fallthrough]];
             case (3):   //  Dundee
                 [[fallthrough]];
             case (4):   //  Vancouver
-                group_landscape_color(panels, ledDefaultColors, (styleProfile - caseGroupIndexStart));
+                group_landscape_color(panels, ledDefaultColors, (styleProfile - caseGroupIndex));
                 break;
             //  Fallthrough case to setting group solid color
             case (5):   //  White
-                caseGroupIndexStart = 5;
+                caseGroupIndex = 5;
                 [[fallthrough]];
             case (6):   //  Yellow - Butter
                 [[fallthrough]];
@@ -103,7 +103,7 @@ int main()
             case (8):   //  Blue
                 [[fallthrough]];
             case (9):   //  Green
-                group_solid_color(panels, solidColorPresets, (styleProfile - caseGroupIndexStart));
+                group_solid_color(panels, solidColorPresets, (styleProfile - caseGroupIndex));
                 break;
             case (10):
                 group_sinewave_color(panels);
@@ -117,7 +117,7 @@ int main()
         styleProfile = debug_incrament_styleProfile(styleProfile);
     }
 
-    return 0;
+    return runState;
 }
 
 
@@ -169,20 +169,19 @@ void set_led_color_group(struct led_panel &panel, int r, int g, int b) {
 void set_led_color_sinwave(struct led_panel& panel) {
     //  LOGIC WORKFLOW 
     //  1. Call sinwave radial from panel, scale LED based on that
-    //  2. Scale the LED brightness based on radial calcualtion
+    //  2. Scale the LED brightness based on radial calcualation
     
 }
 
 
 //  Get potentiometer value from analogInput
 double get_brightness_normalized() {
-    int inputValue = 250;
-    double scaledValue = 0.0;
-    //  rawValue = analogRead(BRIGHTNESS_PIN);
+    int inputVal = 2751;
+    double outputVal = 0.0;
+    //  inputVal = analogRead(BRIGHTNESS_PIN);
 
-    scaledValue = inputValue / 1023.0;
-
-    return scaledValue;
+    outputVal = inputVal / 4096.0;
+    return outputVal;
 }
 
 

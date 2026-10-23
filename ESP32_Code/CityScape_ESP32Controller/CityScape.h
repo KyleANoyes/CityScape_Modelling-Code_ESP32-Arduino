@@ -1,4 +1,4 @@
-//  - - Strucs and Classes - - 
+//  - - Structs and Classes - - 
 //  Only one struct needed for this project.
 //  - - - - - - - - -
 //  led_panel tracks 
