@@ -5,6 +5,7 @@ using namespace std;
 
 //  Global variables
 const int NUM_PANELS = 4;
+const int NUM_STYLES = 9;
 const int NUM_SOLID_COLORS = 5;
 
 //  GPIO Panel LED Declarations
@@ -45,7 +46,7 @@ void setup() {
     pinMode(P3_PIN_B, OUTPUT);
 
     // Auxilary control pins
-    pinMode(STYLE_PIN, INPUT);
+    pinMode(STYLE_PIN, INPUT_PULLUP);
     pinMode(BRIGHTNESS_PIN, INPUT);
 }
 
@@ -58,6 +59,7 @@ void loop()
     int gpioLedPowerScale = 39;
     int styleProfile = 0;
     int caseGroupIndex = 0;
+    bool styleButtonArmed = false;
 
     //  Variable (array) declaration
     //  https://docs.espressif.com/projects/esp-idf/en/v5.1/esp32/_images/esp32-devkitC-v4-pinout.png
@@ -128,18 +130,27 @@ void loop()
             case (9):   //  Green
                 group_solid_color(panels, solidColorPresets, (styleProfile - caseGroupIndex));
                 break;
-            case (10):
-                group_sinewave_color(panels);
-                break;
             default:
                 cout << "ERROR: Switch 'Color Style Selecion' default reached" << endl;
         }
-
+        
+        //  Output style to LED pins
         write_led_rgb(panels);
-        styleProfile = debug_incrament_styleProfile(styleProfile);
+        delay(25);
 
-        delay(250);
-    };
+        //  Check if we can arm the style button
+        if (styleButtonArmed == false) {
+            if (digitalRead(STYLE_PIN) == LOW) {
+                styleButtonArmed = true;
+            }
+        }
+
+        //  If the style button is armed, check if a high press is active
+        if (styleButtonArmed == true && digitalRead(STYLE_PIN) == HIGH) {
+            styleButtonArmed = false;
+            styleProfile = incramentStyleCase(styleProfile);
+        }
+    }
 }
 
 
@@ -224,18 +235,6 @@ void scale_panels_led_power(struct led_panel panels[]) {
 }
 
 
-//  Incrament the sinwave radial value and loop if we exceed 360 degrees
-void incrament_sinwave(struct led_panel &panel) {
-    //  Check if we reached the end of the circle. If so, revert to 0,
-    //      otherwise incramnet by one
-    if (*panel.sinewaveRadial >= 359.0) {
-        *panel.sinewaveRadial = 0.0;
-        return;
-    }
-    *panel.sinewaveRadial += 1;
-}
-
-
 //  Allocate city name into memory
 char* add_city(const char *newName) {
     char* newCity;
@@ -278,7 +277,6 @@ void led_init(struct led_panel panels[], char *names[], int gpioLedPins[][3], in
         //  Simple data copy
         panels[i].name = names[i];
         panels[i].power = (int *)100;
-        panels[i].sinewaveRadial = (double *)0;
 
         //  Pass in the assigned GPIO pins
         panels[i].redPin = (int*)gpioLedPins[i][0];
@@ -311,9 +309,16 @@ void group_solid_color(struct led_panel panels[], int solidColors[][3], int styl
         set_led_color_group(panels[i], solidColors[styleCase][0], solidColors[styleCase][1], solidColors[styleCase][2]);
     }
 }
-//  Sets all panels to a sinewave fade
-void group_sinewave_color(struct led_panel panels[]) {
 
+
+//  Incrament the styleProfile by one and loop if needed
+int incramentStyleCase(int styleProfile) {
+    if (styleProfile == NUM_STYLES) {
+        return 0;
+    }
+    else {
+        return styleProfile += 1;
+    }
 }
 
 
@@ -340,14 +345,4 @@ void debug_analogWrite(int pin, int value) {
     cout << "Value: " << value << endl;
     cout << "- - - - - - - - -" << endl;
     return;
-}
-
-
-//  Incrament the styleProfile by one and loop if needed
-int debug_incrament_styleProfile(int styleProfile) {
-    if (styleProfile == 10) {
-        return 0;
-    }
-
-    return styleProfile += 1;
 }

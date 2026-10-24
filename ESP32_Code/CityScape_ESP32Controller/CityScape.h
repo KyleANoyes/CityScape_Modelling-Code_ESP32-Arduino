@@ -11,7 +11,6 @@ struct led_panel {
     int* blueValue;
     int* greenPin;
     int* greenValue;
-    double* sinewaveRadial;
 };
 
 //  - - Setters - - 
@@ -33,7 +32,6 @@ double get_brightness_normalized();
 //  
 //  - - - - - - - - -
 void scale_panels_led_power(struct led_panel panels[]);
-void incrament_sinwave(struct led_panel& panel);
 void write_led_rgb(struct led_panel panels[]);
 char* add_city(const char *newName);
 void led_init(struct led_panel panels[], char *names[], int gpioLedPins[][3], int ledColors[][3]);
@@ -45,7 +43,7 @@ void led_init(struct led_panel panels[], char *names[], int gpioLedPins[][3], in
 void reset_panels_colors(struct led_panel panels[], int ledColors[][3]);
 void group_landscape_color(struct led_panel panels[], int ledColors[][3], int styleCase);
 void group_solid_color(struct led_panel panels[], int ledColors[][3], int styleCase);
-void group_sinewave_color(struct led_panel panels[]);
+int incramentStyleCase(int styleProfile);
 
 
 //  - - Debugging - - 
@@ -54,4 +52,3 @@ void group_sinewave_color(struct led_panel panels[]);
 //  - - - - - - - - -
 void debug_print_panel(struct led_panel *panel);
 void debug_analogWrite(int pin, int value);
-int debug_incrament_styleProfile(int styleProfile);
