@@ -12,15 +12,15 @@ const int NUM_SOLID_COLORS = 5;
 #define P0_PIN_R 15
 #define P0_PIN_G 2
 #define P0_PIN_B 4
-#define P1_PIN_R 16
-#define P1_PIN_G 17
-#define P1_PIN_B 5
-#define P2_PIN_R 18
-#define P2_PIN_G 19
-#define P2_PIN_B 21
-#define P3_PIN_R 3
-#define P3_PIN_G 1
-#define P3_PIN_B 22
+#define P1_PIN_R 27
+#define P1_PIN_G 26
+#define P1_PIN_B 25
+#define P2_PIN_R 16
+#define P2_PIN_G 17
+#define P2_PIN_B 5
+#define P3_PIN_R 18
+#define P3_PIN_G 22
+#define P3_PIN_B 23
 
 //  GPIO Button Declarations
 #define STYLE_PIN 32
@@ -75,7 +75,8 @@ void loop()
     int ledDefaultColors[NUM_PANELS][3] =
     {
         {206, 170, 122},
-        {205, 173, 138},
+        //{205, 173, 138},
+        {255, 255, 255},
         {134, 81, 73},
         {110, 147, 42},
     };
