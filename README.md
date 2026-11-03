@@ -5,9 +5,10 @@ This project contains all design files and application data used to create the m
 
 No AI has been used for this project, all source files are freely available for use as desired. This is a birthday gift and just a silly fun project to share :)
 
-Auerbach & Dundee panels
-<img width="3000" height="4000" alt="2026-10-16 15 00 55" src="https://github.com/user-attachments/assets/513cbda1-dcb6-4b05-a83a-8e47186d8845" />
+<img width="3000" height="4000" alt="2026-11-03 09 52 01" src="https://github.com/user-attachments/assets/e60309cc-fe70-469e-8b7a-2afcd7455f1d" />
+
+<img width="3000" height="4000" alt="2026-11-03 09 52 59" src="https://github.com/user-attachments/assets/ab7572b4-04c5-49b2-abc1-51a0022a0141" />
 
 
-Current breadboard layout
+Breadboard layout
 <img width="4000" height="3000" alt="2026-10-19 15 53 54" src="https://github.com/user-attachments/assets/ec83dadd-adfb-4f9a-936d-c2bf24c965cc" />
