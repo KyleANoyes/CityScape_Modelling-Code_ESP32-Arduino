@@ -140,10 +140,8 @@ void loop()
         delay(25);
 
         //  Check if we can arm the style button
-        if (styleButtonArmed == false) {
-            if (digitalRead(STYLE_PIN) == LOW) {
-                styleButtonArmed = true;
-            }
+        if (styleButtonArmed == false && digitalRead(STYLE_PIN) == LOW) {
+            styleButtonArmed = true;
         }
 
         //  If the style button is armed, check if a high press is active

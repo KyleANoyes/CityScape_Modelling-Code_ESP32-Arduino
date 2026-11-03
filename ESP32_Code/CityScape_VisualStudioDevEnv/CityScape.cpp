@@ -13,15 +13,15 @@ const int NUM_SOLID_COLORS = 5;
 #define P0_PIN_R 15
 #define P0_PIN_G 2
 #define P0_PIN_B 4
-#define P1_PIN_R 16
-#define P1_PIN_G 17
-#define P1_PIN_B 5
-#define P2_PIN_R 18
-#define P2_PIN_G 19
-#define P2_PIN_B 21
-#define P3_PIN_R 3
-#define P3_PIN_G 1
-#define P3_PIN_B 22
+#define P1_PIN_R 27
+#define P1_PIN_G 26
+#define P1_PIN_B 25
+#define P2_PIN_R 16
+#define P2_PIN_G 17
+#define P2_PIN_B 5
+#define P3_PIN_R 18
+#define P3_PIN_G 22
+#define P3_PIN_B 23
 
 //  GPIO Button Declarations
 #define STYLE_PIN 32
@@ -118,10 +118,8 @@ int main()
         //  This code drives the arduino button state check and sets armed status
         /*
         //  Check if we can arm the style button
-        if (styleButtonArmed == false) {
-            if (digitalRead(STYLE_PIN) == LOW) {
-                styleButtonArmed = true;
-            }
+        if (styleButtonArmed == false && digitalRead(STYLE_PIN) == LOW) {
+            styleButtonArmed = true;
         }
 
         //  If the style button is armed, check if a high press is active
